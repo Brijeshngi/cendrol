@@ -2,10 +2,10 @@
   "name": "cendrol",
   "version": "1.0.0",
   "description": "Cendrol node js intern task",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Brijeshngi/cendrol#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^7.4.3"
