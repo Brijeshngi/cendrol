@@ -1,11 +1,16 @@
-const ErrorMiddleware = (err, req, res, next) => {
-  err.statusCode = err.statusCode || 500;
+import jwt from "jsonwebtoken";
+import { User } from "../models/User.js";
+import ErrorHandler from "../utils/errorHandler.js";
+import "express-async-errors";
 
-  err.message = err.message || "Internal serevr error";
+export const isAuthenticated = async (req, res, next) => {
+  const { token } = req.cookies;
 
-  res.status(err.statusCode).json({
-    success: false,
-    message: err.message,
-  });
+  if (!token) return next(new ErrorHandler("Not logged in", 400));
+
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  req.user = await User.findById(decoded._id);
+
+  next();
 };
-export default ErrorMiddleware;

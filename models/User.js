@@ -25,7 +25,14 @@ const schema = new mongoose.Schema({
     required: [true, "Password required"],
   },
   Profile_picture: {
-    type: String,
+    public_id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
   },
   createdAt: {
     type: Date,
